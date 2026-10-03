@@ -1,2 +1,9 @@
-# woia-software-business-rules-agent-plugin
-WOIA v0.5.0 component: woia-software-business-rules-agent-plugin
+# woia-software-business-rules
+
+WOIA Software provider for the `business-rules` capability. Portable capability content is migrated preserve-first from `Turpial-AI-Academy/business-rules-agent-plugin@1.0.1` and remains independently usable.
+
+- Plugin version: `0.5.0`
+- Primary skill: `$business-rules`
+- Authoring profile: thin
+
+Generic certification/release tooling is centralized in `woia-ecosystem`.
