@@ -34,6 +34,7 @@ This capability is standalone. When used as the ASPS provider for business-rules
 - Preserve existing healthy identifiers, terminology, ownership, precedence, and governance conventions when they exist.
 - Use decision tables only when combinations of conditions materially change outcomes.
 - Do not report a rule, exception, traceability link, or validation as confirmed without supporting evidence.
+- Persist or modify the business-rules artifact only when the caller/runtime explicitly authorizes local writes to the target path. In WOIA this requires an active `local-write` authority grant. Without that grant, do not mutate files; return or propose the content and report the authority blocker.
 
 ## Execution depth
 
