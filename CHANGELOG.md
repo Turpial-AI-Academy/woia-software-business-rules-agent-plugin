@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.5.1 - 2026-10-04
 
 - Restore capability-specific Business Rules regressions for centralized thin certification.
 - Require explicit `local-write` authority before persisting the Business Rules artifact.
