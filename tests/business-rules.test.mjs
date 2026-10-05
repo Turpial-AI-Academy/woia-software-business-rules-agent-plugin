@@ -154,7 +154,8 @@ test("rule references load by decision need and amendment evidence remains expli
 
 test("business-rules requires explicit local-write authority before persistence", async () => {
   const skill = await readFile(path.join(skillRoot, "SKILL.md"), "utf8");
+  assert.match(skill, /business-rules/i);
+  assert.match(skill, /persist-artifact/i);
   assert.match(skill, /local-write/i);
-  assert.match(skill, /without[^\n.]*grant[\s\S]*do not mutate|without[^\n.]*authorization[\s\S]*do not mutate/i);
-  assert.match(skill, /authorized[\s\S]*persist|grant[\s\S]*write/i);
+  assert.match(skill, /without[^\n.]*exact grant[\s\S]*do not mutate|without[^\n.]*grant[\s\S]*do not mutate/i);
 });
