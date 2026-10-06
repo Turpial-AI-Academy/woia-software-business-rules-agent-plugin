@@ -103,6 +103,18 @@ If a project has no rule-ID convention, a document-local scheme such as BR-<DOMA
 
 ## Implement
 
+Before creating or modifying any Business Rules artifact in WOIA, resolve the installed WOIA Core and invoke its common authority guard immediately before the mutation:
+
+~~~text
+node <installed WOIA Core>/skills/project-runtime/scripts/authority-guard.mjs --project-root <current Project root> --request <request.json>
+~~~
+
+The request must identify the current `projectId`, `principalId`, `department`, `taskRef` (`kind: Task`, ID and revision), `agentRef` (`kind: AgentInstance`, ID and revision), capability `business-rules`, operation `persist-artifact`, effect class `local-write`, the exact Project-relative `target`, and its `resourceRef` (type, ID, URI equal to target, and version when applicable). For the Software contract the target is `docs/project/02-BUSINESS-RULES.md`; standalone callers may use their authorized canonical destination.
+
+The guard resolves the durable Project, Task, AgentInstance, and referenced authority-context/v1 from the Project's `.woia` state. The exact target/resource must be bound to both the current Task's `expected_outputs` and the AgentInstance's `resource_scope`; a matching capability/operation/effect class alone does not authorize an arbitrary path. Filesystem access is not operational authority.
+
+If the guard exits nonzero, returns `allowed: false`, cannot run, or cannot establish those bindings, do not create or modify files. Analysis and proposed content may still be returned; report the authority blocker and preserve objective before/after absence or bytes/SHA-256 for an existing target. With `allowed: true`, persistence is permitted only for the authorized operation and scope, subject to all other applicable restrictions. The guard determines eligibility and does not write the artifact itself. Record the request, guard result, target, and resulting evidence; do not reuse a result after Project/Task/AgentInstance/authority or target scope changes.
+
 Use [business-rules-document.template.md](assets/business-rules-document.template.md) when creating a catalog or repairing its structure. Preserve a healthy existing artifact for bounded amendments; do not replay its template.
 
 A material rule should normally make these semantics recoverable:

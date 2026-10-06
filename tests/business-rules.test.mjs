@@ -7,6 +7,30 @@ const ROOT = path.resolve(import.meta.dirname, "..");
 
 const skillRoot = path.join(ROOT, "skills", "business-rules");
 
+test("business-rules preserves discovery input and canonical Software artifact boundary", async () => {
+  const skill = await readFile(path.join(skillRoot, "SKILL.md"), "utf8");
+  assert.match(skill, /business-rules\/v1/);
+  assert.match(skill, /input boundary is discovery evidence/);
+  assert.match(skill, /docs\/project\/02-BUSINESS-RULES\.md/);
+  assert.match(skill, /standalone caller may choose another destination/i);
+});
+
+test("business-rules invokes the common portable guard before mutation and binds exact scope", async () => {
+  const skill = await readFile(path.join(skillRoot, "SKILL.md"), "utf8");
+  const implement = skill.split("## Implement")[1]?.split("## Validate")[0] ?? "";
+  assert.match(implement, /invoke its common authority guard immediately before the mutation/i);
+  assert.match(implement, /node <installed WOIA Core>\/skills\/project-runtime\/scripts\/authority-guard\.mjs --project-root <current Project root> --request <request\.json>/);
+  for (const binding of ["projectId", "principalId", "department", "taskRef", "agentRef", "resourceRef", "expected_outputs", "resource_scope", "authority-context/v1"]) {
+    assert.ok(implement.includes(binding), `required authority binding: ${binding}`);
+  }
+  assert.match(implement, /Filesystem access is not operational authority/);
+  assert.match(implement, /exits nonzero[\s\S]*allowed: false[\s\S]*do not create or modify files/);
+  assert.match(implement, /Analysis and proposed content[\s\S]*report the authority blocker/);
+  assert.match(implement, /before\/after absence or bytes\/SHA-256/);
+  assert.match(implement, /allowed: true[\s\S]*persistence is permitted only for the authorized operation and scope, subject to all other applicable restrictions/);
+  assert.match(implement, /guard determines eligibility and does not write the artifact itself/);
+});
+
 function preservesUnrelatedRuleEvidence(text) {
   return text.split(/[.!?\n]+/).some((statement) => (
     /\b(?:preserve|keep|retain)\b/i.test(statement) &&

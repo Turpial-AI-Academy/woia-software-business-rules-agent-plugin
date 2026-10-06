@@ -2,6 +2,8 @@
 
 ## 0.5.1 - 2026-10-04
 
+- Require the installed Core authority guard before persistence, binding the exact Project, Task, AgentInstance, authority context, and target resource; preserve denial and scoped eligibility semantics.
+
 - Restore capability-specific Business Rules regressions for centralized thin certification.
 - Require explicit `local-write` authority before persisting the Business Rules artifact.
 - Restore the canonical MIT license text.
