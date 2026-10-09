@@ -4,7 +4,7 @@ description: Use when a software project needs explicit business rules, constrai
 license: MIT
 metadata:
   author: Turpial AI Academy
-  version: "0.5.6"
+  version: "0.5.7"
 ---
 
 # business-rules
