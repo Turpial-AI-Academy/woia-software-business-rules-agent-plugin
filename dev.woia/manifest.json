@@ -1,24 +1,8 @@
 {
   "schema": "dev.woia.provider-manifest/v1",
-  "version": "0.5.1",
+  "version": "0.5.6",
   "authoring_profile": "thin",
   "department": "software",
   "capability": "business-rules",
-  "skill": "business-rules",
-  "source_lineage": {
-    "repository": "Turpial-AI-Academy/business-rules-agent-plugin",
-    "version": "1.0.1",
-    "commit": "d9c9841352829de25cc2174326fcc7ccdef3c408"
-  },
-  "migrated_portable_paths": [
-    "skills/business-rules/SKILL.md",
-    "skills/business-rules/assets/README.md",
-    "skills/business-rules/assets/business-rules-document.template.md",
-    "skills/business-rules/references/BUSINESS_RULES_STANDARD.md",
-    "skills/business-rules/references/DECISION_LOGIC.md",
-    "skills/business-rules/references/DISCOVERY_INPUT_MODEL.md",
-    "skills/business-rules/references/README.md",
-    "skills/business-rules/references/RULE_MODEL.md",
-    "skills/business-rules/references/VALIDATION_CHECKLIST.md"
-  ]
+  "skill": "business-rules"
 }
